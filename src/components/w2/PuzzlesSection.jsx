@@ -4,11 +4,36 @@ import confetti from "canvas-confetti";
 
 const burst = () => confetti({ particleCount: 65, spread: 60, origin: { y: 0.7 }, colors: ["#7C3AED", "#A66CFF", "#F4B942", "#4ADE80"] });
 const TABS = [
+  ["knights", "Knights & Knaves"], ["trunks", "Three Trunks"], ["muddy", "Muddy Foreheads"],
   ["fork", "Fork in the Road"], ["murder", "Murder Mystery"], ["zebra", "Zebra Puzzle"],
 ];
 
 function Shell({ title, children }) {
   return <div className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-6"><p className="text-white font-heading font-semibold">{title}</p>{children}</div>;
+}
+
+function IntroTable({ rows, caption }) {
+  return (
+    <div className="mt-4 overflow-x-auto rounded-xl border border-[#211934]">
+      <table className="w-full font-mono text-sm border-collapse">
+        <thead className="bg-[#1A1330] text-[#F4B942]">
+          <tr>{rows[0].map((header, index) => <th key={index} className="p-2 text-left">{header}</th>)}</tr>
+        </thead>
+        <tbody className="text-[#E4D9FF]">
+          {rows.slice(1).map((row, rowIndex) => (
+            <tr key={rowIndex} className="border-t border-[#2A2140]">
+              {row.map((value, cellIndex) => {
+                const highlight = typeof value === "string" && value.startsWith("!");
+                const text = highlight ? value.slice(1) : value;
+                return <td key={cellIndex} className={`p-2 ${highlight ? "text-[#4ADE80] font-semibold" : ""}`}>{text}</td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {caption && <p className="px-3 py-2 text-xs text-[#9C93B3] bg-[#0F0A1A] border-t border-[#211934]">{caption}</p>}
+    </div>
+  );
 }
 
 function ChoiceGame({ question, choices, answer, explanation }) {
@@ -40,8 +65,20 @@ function ChoiceGame({ question, choices, answer, explanation }) {
 
 function Knights() {
   return <Shell title="Puzzle 1: Knights & Knaves">
+    <p className="mt-2 text-sm text-[#9C93B3]">On this island, a <strong className="text-[#E4D9FF]">Knight</strong> always tells the truth, and a <strong className="text-[#E4D9FF]">Knave</strong> always lies. A says "B is a knight." B says "We are opposite types." We test every combination and keep only the one where nobody breaks their own rule.</p>
+    <IntroTable
+      caption="'!' marks the value that stays consistent with each speaker's rule. Only the A = Knave, B = Knave row survives without contradiction."
+      rows={[
+        ["World", "A's statement (\"B is a knight\")", "Is A consistent?", "B's statement (\"We are opposite\")", "Is B consistent?"],
+        ["A Knight, B Knight", "True", "Knight told truth ✓", "False (same type)", "!Knight told a lie ✗"],
+        ["A Knight, B Knave", "False", "!Knight told a lie ✗", "True (opposite types)", "Knave told truth ✗"],
+        ["A Knave, B Knave", "False", "Knave lied ✓", "False (same type)", "Knave lied ✓"],
+        ["A Knave, B Knight", "True", "!Knave told truth ✗", "True (opposite types)", "Knight told truth, but A's claim was true so A (a knave) can't say it ✗"],
+      ]}
+    />
+    <p className="mt-3 text-sm text-[#E4D9FF]">Reasoning: try each of the 4 worlds and check if every knight told the truth and every knave lied. Only <strong>A = Knave, B = Knave</strong> passes both checks.</p>
     <ChoiceGame
-      question={'A says "B is a knight." B says "We are opposite types." Which world can exist if knights always tell the truth and knaves always lie?'}
+      question={'So which world can exist if knights always tell the truth and knaves always lie?'}
       choices={["A Knight, B Knight", "A Knight, B Knave", "A Knave, B Knave", "A Knave, B Knight"]}
       answer={2}
       explanation={'Both are knaves. A lies that B is a knight; B lies that they are opposite. Every other world makes a knight lie or a knave tell the truth.'}
@@ -51,8 +88,18 @@ function Knights() {
 
 function Trunks() {
   return <Shell title="Puzzle 2: The Three Trunks">
+    <p className="mt-2 text-sm text-[#9C93B3]">Exactly one inscription is true. Trunk 1 says "This trunk is empty." Trunk 2 says "This trunk is empty." Trunk 3 says "The treasure is in Trunk 2." Test each possible hiding place and count how many inscriptions come out true.</p>
+    <IntroTable
+      caption="Only placing the treasure in Trunk 1 produces exactly one true statement (marked with ✓)."
+      rows={[
+        ["Treasure in", "Trunk 1 says \"I'm empty\"", "Trunk 2 says \"I'm empty\"", "Trunk 3 says \"Treasure in 2\"", "# True"],
+        ["Trunk 1", "False", "True", "False", "!1 ✓"],
+        ["Trunk 2", "True", "False", "True", "2 ✗"],
+        ["Trunk 3", "True", "True", "False", "2 ✗"],
+      ]}
+    />
     <ChoiceGame
-      question={'Exactly one inscription is true. Trunk 1 says "This trunk is empty." Trunk 2 says "This trunk is empty." Trunk 3 says "The treasure is in Trunk 2." Where is the treasure?'}
+      question={'Given the table above, where is the treasure?'}
       choices={["Trunk 1", "Trunk 2", "Trunk 3"]}
       answer={0}
       explanation="If treasure is in Trunk 1, inscriptions read F, T, F: exactly one true. The other two hypotheses each create two true inscriptions."
@@ -63,7 +110,15 @@ function Trunks() {
 function Muddy() {
   const [round, setRound] = useState(0);
   return <Shell title="Puzzle 3: Muddy Foreheads">
-    <p className="mt-2 text-sm text-[#9C93B3]">Both children are muddy. Father publicly says: "At least one of you is muddy."</p>
+    <p className="mt-2 text-sm text-[#9C93B3]">Both children are muddy, but neither can see their own forehead. Father publicly says: "At least one of you is muddy." Watch how the same public statement produces different answers each time it is repeated.</p>
+    <IntroTable
+      caption="Child 1 and Child 2 both reason about what the other person can see, and about what the other person's silence reveals."
+      rows={[
+        ["Round", "What each child sees", "What each child knows so far", "Answer"],
+        ["Round 1", "Sees mud only on the other child", "Cannot rule out being clean themselves yet", "!\"No\" (both)"],
+        ["Round 2", "Hears both said \"No\" in round 1", "If I were clean, the other child would have seen only a clean forehead and answered \"Yes\" in round 1 — but they didn't", "!\"Yes\" (both)"],
+      ]}
+    />
     <div className="mt-4 rounded-xl bg-[#0F0A1A] border border-[#211934] p-4">
       {round === 0 && <><p className="text-[#E4D9FF]">Round 1: each sees mud on the other person, so both answer <strong>"No."</strong></p><button onClick={() => setRound(1)} className="mt-3 rounded-lg bg-[#7C3AED] px-3 py-2 text-sm text-white">Ask again</button></>}
       {round === 1 && <><p className="text-[#E4D9FF]">Round 2: each hears the other said "No." If I were clean, the other child would have known immediately in round 1.</p><button onClick={() => { setRound(2); burst(); }} className="mt-3 rounded-lg bg-[#7C3AED] px-3 py-2 text-sm text-white">Reveal the aha moment</button></>}
@@ -98,6 +153,15 @@ function Murder() {
       <li><strong>Jones:</strong> "I did not know Cooper. I was out of town on the day of the killing."</li>
       <li><strong>Williams:</strong> "I did not kill Cooper. I saw Smith and Jones with Cooper that day. Either Smith or Jones killed him."</li>
     </ul>}
+    <IntroTable
+      caption="Only the 'Jones is guilty' hypothesis avoids forcing a truthful, innocent man into a contradiction (marked with ✓)."
+      rows={[
+        ["Guilty suspect", "Smith's statements", "Jones's statements", "Williams's statements", "Contradiction?"],
+        ["Smith", "May lie (guilty)", "Truthful: was out of town", "Truthful: saw Smith & Jones with Cooper", "Williams places Jones with Cooper, but Jones (truthful) says he was out of town ✗"],
+        ["Jones", "Truthful: didn't kill Cooper, Williams disliked him", "May lie (guilty)", "Truthful: Smith or Jones killed him", "!No contradiction: everyone truthful stays consistent ✓"],
+        ["Williams", "Truthful: Cooper was Jones's friend", "Truthful: didn't know Cooper", "May lie (guilty)", "Smith (truthful) says Cooper was Jones's friend, but Jones (truthful) says he didn't know Cooper ✗"],
+      ]}
+    />
     <ChoiceGame
       question="Who is the murderer?"
       choices={["Mr. Smith", "Mr. Jones", "Mr. Williams"]}
@@ -130,7 +194,7 @@ function Zebra() {
 }
 
 export default function PuzzlesSection() {
-  const [tab, setTab] = useState("fork");
+  const [tab, setTab] = useState("knights");
   const content = { knights: <Knights />, trunks: <Trunks />, muddy: <Muddy />, fork: <ForkRoad />, murder: <Murder />, zebra: <Zebra /> };
   return (
     <div className="space-y-6">

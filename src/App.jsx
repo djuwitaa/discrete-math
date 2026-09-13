@@ -14,7 +14,7 @@ const weekTwoSections = {
 };
 
 export default function App() {
-  const [week, setWeek] = useState(2);
+  const [week, setWeek] = useState(1);
   const [section, setSection] = useState("applications");
   const WeekTwoSection = weekTwoSections[section];
 
@@ -37,7 +37,7 @@ export default function App() {
         </div>
       </div>
       <footer className="border-t border-[#211934] px-6 py-8 text-center text-sm text-[#5B5470]">
-        Week 3: Predicates & Quantifiers. Review the core rules before continuing.
+        Created by Djuwita · since 2026
       </footer>
     </div>
   );
