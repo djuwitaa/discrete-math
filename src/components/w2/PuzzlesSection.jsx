@@ -36,7 +36,7 @@ function IntroTable({ rows, caption }) {
   );
 }
 
-function ChoiceGame({ question, choices, answer, explanation }) {
+function ChoiceGame({ question, choices, answer, explanation, table, tableCaption }) {
   const [choice, setChoice] = useState(null);
   const correct = choice === answer;
   function pick(index) {
@@ -59,6 +59,12 @@ function ChoiceGame({ question, choices, answer, explanation }) {
         ))}
       </div>
       {choice !== null && <div className={`mt-4 rounded-lg p-3 text-sm ${correct ? "bg-[#173626]/40 text-[#E4D9FF]" : "bg-[#3A1C22]/40 text-[#E4D9FF]"}`}>{explanation}</div>}
+      {choice !== null && table && (
+        <div className="mt-4">
+          <p className="text-xs tracking-wide text-[#F4B942] font-mono mb-1">TRUTH TABLE — WHY THIS WORKS</p>
+          <IntroTable rows={table} caption={tableCaption} />
+        </div>
+      )}
     </>
   );
 }
@@ -139,6 +145,14 @@ function ForkRoad() {
       ]}
       answer={1}
       explanation="Ask the villager what they would say. A truth-teller truthfully reports their Yes/No answer; a liar lies about their false answer. Both lead you to the same reliable response: take the left road exactly when the answer is Yes."
+      tableCaption="'Left → ruins?' is the hidden fact. 'Would say' is what the villager actually answers to the nested question. Notice the answer is 'Yes' in both worlds exactly when the left road really leads to the ruins — so the question is safe regardless of who you ask."
+      table={[
+        ["Villager type", "Left road → ruins?", "Direct answer they'd give to \"does left lead to ruins?\"", "What they say when asked \"would you say Yes?\"", "Your conclusion"],
+        ["Truth-teller", "True", "Yes (tells truth)", "!Yes (truthfully reports own Yes)", "Take left ✓"],
+        ["Truth-teller", "False", "No (tells truth)", "!No (truthfully reports own No)", "Take right ✓"],
+        ["Liar", "True", "No (would lie)", "!Yes (lies about their own \"No\")", "Take left ✓"],
+        ["Liar", "False", "Yes (would lie)", "!No (lies about their own \"Yes\")", "Take right ✓"],
+      ]}
     />
   </Shell>;
 }
@@ -153,20 +167,18 @@ function Murder() {
       <li><strong>Jones:</strong> "I did not know Cooper. I was out of town on the day of the killing."</li>
       <li><strong>Williams:</strong> "I did not kill Cooper. I saw Smith and Jones with Cooper that day. Either Smith or Jones killed him."</li>
     </ul>}
-    <IntroTable
-      caption="Only the 'Jones is guilty' hypothesis avoids forcing a truthful, innocent man into a contradiction (marked with ✓)."
-      rows={[
-        ["Guilty suspect", "Smith's statements", "Jones's statements", "Williams's statements", "Contradiction?"],
-        ["Smith", "May lie (guilty)", "Truthful: was out of town", "Truthful: saw Smith & Jones with Cooper", "Williams places Jones with Cooper, but Jones (truthful) says he was out of town ✗"],
-        ["Jones", "Truthful: didn't kill Cooper, Williams disliked him", "May lie (guilty)", "Truthful: Smith or Jones killed him", "!No contradiction: everyone truthful stays consistent ✓"],
-        ["Williams", "Truthful: Cooper was Jones's friend", "Truthful: didn't know Cooper", "May lie (guilty)", "Smith (truthful) says Cooper was Jones's friend, but Jones (truthful) says he didn't know Cooper ✗"],
-      ]}
-    />
     <ChoiceGame
       question="Who is the murderer?"
       choices={["Mr. Smith", "Mr. Jones", "Mr. Williams"]}
       answer={1}
       explanation="Jones is guilty. If Smith were guilty, truthful Williams says Jones was with Cooper, contradicting truthful Jones's claim he was out of town. If Williams were guilty, truthful Smith says Jones knew Cooper, contradicting truthful Jones. Only Jones can be guilty while Smith and Williams remain truthful."
+      tableCaption="Only the 'Jones is guilty' hypothesis avoids forcing a truthful, innocent man into a contradiction (marked with ✓)."
+      table={[
+        ["Guilty suspect", "Smith's statements", "Jones's statements", "Williams's statements", "Contradiction?"],
+        ["Smith", "May lie (guilty)", "Truthful: was out of town", "Truthful: saw Smith & Jones with Cooper", "Williams places Jones with Cooper, but Jones (truthful) says he was out of town ✗"],
+        ["Jones", "Truthful: didn't kill Cooper, Williams disliked him", "May lie (guilty)", "Truthful: Smith or Jones killed him", "!No contradiction: everyone truthful stays consistent ✓"],
+        ["Williams", "Truthful: Cooper was Jones's friend", "Truthful: didn't know Cooper", "May lie (guilty)", "Smith (truthful) says Cooper was Jones's friend, but Jones (truthful) says he didn't know Cooper ✗"],
+      ]}
     />
   </Shell>;
 }
