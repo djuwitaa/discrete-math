@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, Lightbulb } from "lucide-react";
+import TruthTableVisualizer from "./TruthTableVisualizer";
 
 const operators = [
   { symbol: "¬p", name: "Negation", words: '"not p"', example: 'p: "It is raining." ¬p: "It is not raining."', rule: "Flips one truth value." },
@@ -213,6 +214,7 @@ export default function FoundationsSection() {
       <PropositionExplainer />
       <OperatorDeck />
       <PrecedenceAndTruthTable />
+      <TruthTableVisualizer />
       <ImplicationVariations />
     </div>
   );
