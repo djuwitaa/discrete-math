@@ -200,7 +200,21 @@ function Zebra() {
       <p className="text-sm text-[#E4D9FF] mt-2 leading-relaxed">{zebraClues[clue]}</p>
       {clue < zebraClues.length - 1 && <button onClick={() => setClue((current) => current + 1)} className="mt-3 text-sm text-[#B48CFF] hover:text-white">Reveal next clue →</button>}
     </div>
-    {clue === zebraClues.length - 1 && !answered && <ChoiceGame question="Final challenge: who owns the zebra, and who drinks mineral water?" choices={["Japanese owns the zebra; Norwegian drinks mineral water", "Englishman owns the zebra; Italian drinks mineral water", "Spaniard owns the zebra; Japanese drinks mineral water"]} answer={0} explanation="By systematically marking each clue in a five-house grid, the only consistent solution places the zebra with the Japanese man and mineral water with the Norwegian." />}
+    {clue === zebraClues.length - 1 && !answered && <ChoiceGame
+      question="Final challenge: who owns the zebra, and who drinks mineral water?"
+      choices={["Japanese owns the zebra; Norwegian drinks mineral water", "Englishman owns the zebra; Italian drinks mineral water", "Spaniard owns the zebra; Japanese drinks mineral water"]}
+      answer={0}
+      explanation="By systematically marking each clue in a five-house grid, the only consistent solution places the zebra with the Japanese man and mineral water with the Norwegian."
+      tableCaption="Fill one house at a time: house 1 is forced to be yellow (not red, not the white/green pair) so the Norwegian there must be the diplomat; that pins the horse next door. From there each remaining clue locks in exactly one more cell, until every row is consistent with all 14 clues at once."
+      table={[
+        ["House", "Color", "Nationality", "Job", "Drink", "Pet"],
+        ["House 1", "Yellow", "Norwegian", "Diplomat", "!Mineral water", "Fox"],
+        ["House 2", "Blue", "Italian", "Physician", "Tea", "Horse"],
+        ["House 3", "Red", "Englishman", "Photographer", "Milk", "Snails"],
+        ["House 4", "White", "Spaniard", "Violinist", "Orange juice", "Dog"],
+        ["House 5", "Green", "!Japanese", "Painter", "Coffee", "!Zebra"],
+      ]}
+    />}
     {clue === zebraClues.length - 1 && <button onClick={() => setAnswered(true)} className="mt-4 text-xs text-[#9C93B3] hover:text-white">Mark puzzle as reviewed</button>}
   </Shell>;
 }

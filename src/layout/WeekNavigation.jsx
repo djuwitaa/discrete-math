@@ -1,14 +1,8 @@
-const SECTIONS = [
-  { id: "applications", number: "01", label: "Applications" },
-  { id: "puzzles", number: "02", label: "Puzzles" },
-  { id: "equivalences", number: "03", label: "Equivalences" },
-];
-
-export default function WeekNavigation({ activeSection, onSectionChange }) {
+export default function WeekNavigation({ sections, activeSection, onSectionChange }) {
   return (
     <nav className="sticky top-0 z-10 backdrop-blur bg-[#0A0714]/90 border-b border-[#211934]">
       <div className="px-6 py-3 flex flex-wrap gap-2">
-        {SECTIONS.map((item) => (
+        {sections.map((item) => (
           <button
             key={item.id}
             onClick={() => onSectionChange(item.id)}
