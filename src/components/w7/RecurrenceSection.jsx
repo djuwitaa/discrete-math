@@ -65,7 +65,7 @@ function Definition() {
         <Box>
           <p className="text-xs font-semibold text-[#B48CFF] tracking-wide">SOLUTION</p>
           <p className="mt-2 text-sm text-[#C9BFE3]">A formula for a_n that uses only n, and satisfies both the recurrence and the initial conditions.</p>
-          <p className="mt-2 font-mono text-sm text-[#F4B942] break-words">a_n = 3^n  (try it!)</p>
+          <p className="mt-2 font-mono text-sm text-[#F4B942] break-words">a_n = 3·2^n - 2  (check it!)</p>
         </Box>
         <Box>
           <p className="text-xs font-semibold text-[#B48CFF] tracking-wide">LINEAR HOMOGENEOUS, CONSTANT COEFFICIENTS</p>
