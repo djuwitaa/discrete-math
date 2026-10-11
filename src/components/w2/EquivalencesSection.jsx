@@ -39,7 +39,7 @@ const LAWS = [
 
 const WORKED_EXAMPLES = [
   {
-    title: "Example 1 — simplify ¬(p → q)",
+    title: "Example 1: simplify ¬(p → q)",
     problem: "¬(p → q)",
     steps: [
       { law: "Implication law", cue: "p → q ≡ ¬p ∨ q", result: "¬(¬p ∨ q)", note: "First rewrite the implication so there is no arrow left to deal with." },
@@ -47,10 +47,10 @@ const WORKED_EXAMPLES = [
       { law: "Double negation", cue: "¬¬p ≡ p", result: "p ∧ ¬q", note: "Two NOTs on p cancel out." },
     ],
     final: "p ∧ ¬q",
-    meaning: "\"Not (if p then q)\" really means \"p is true, but q is false\" — exactly the one case that breaks the promise.",
+    meaning: "\"Not (if p then q)\" really means \"p is true, but q is false\". This is exactly the one case that breaks the promise.",
   },
   {
-    title: "Example 2 — simplify (p ∧ q) ∨ (p ∧ ¬q)",
+    title: "Example 2: simplify (p ∧ q) ∨ (p ∧ ¬q)",
     problem: "(p ∧ q) ∨ (p ∧ ¬q)",
     steps: [
       { law: "Distributive law", cue: "factor out the shared p", result: "p ∧ (q ∨ ¬q)", note: "Both terms share p, so pull it outside the parentheses." },
@@ -58,10 +58,10 @@ const WORKED_EXAMPLES = [
       { law: "Identity law", cue: "p ∧ T ≡ p", result: "p", note: "ANDing with T never changes the other side." },
     ],
     final: "p",
-    meaning: "Whether q is true or false doesn't matter here — the expression only ever depends on p.",
+    meaning: "Whether q is true or false doesn't matter here. The expression only ever depends on p.",
   },
   {
-    title: "Example 3 — simplify ¬(p ∨ q) ∨ (¬p ∧ q)",
+    title: "Example 3: simplify ¬(p ∨ q) ∨ (¬p ∧ q)",
     problem: "¬(p ∨ q) ∨ (¬p ∧ q)",
     steps: [
       { law: "De Morgan's law", cue: "¬(a ∨ b) ≡ ¬a ∧ ¬b", result: "(¬p ∧ ¬q) ∨ (¬p ∧ q)", note: "Break the negated OR first." },
@@ -160,7 +160,7 @@ function CheatKey() {
                     </tbody>
                   </table>
                 )}
-                {showProof === index && <p className="mt-2 text-[11px] text-[#4ADE80]">LHS and RHS match on every row — that's what "logically equivalent" means.</p>}
+                {showProof === index && <p className="mt-2 text-[11px] text-[#4ADE80]">LHS and RHS match on every row. That's what "logically equivalent" means.</p>}
               </div>
             )}
           </button>
@@ -177,7 +177,7 @@ function WorkedExample({ example }) {
   return (
     <Card className="p-5">
       <p className="text-white font-heading font-semibold">{example.title}</p>
-      <p className="mt-1 text-sm text-[#9C93B3]">Click through each move one at a time — see exactly which law justifies it.</p>
+      <p className="mt-1 text-sm text-[#9C93B3]">Click through each move one at a time and see exactly which law justifies it.</p>
       <div className="mt-4 rounded-xl bg-[#0F0A1A] border border-[#211934] p-4 font-mono text-lg text-[#F4B942]">{example.problem}</div>
       <div className="mt-3 space-y-2">
         {revealed.map((s, index) => (

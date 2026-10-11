@@ -9,20 +9,20 @@ function QuantifierIntro() {
     <Panel>
       <SectionTitle title="Quantifiers: making a propositional function into a proposition, without picking just one value">
         In Predicate Basics we turned P(x) into a proposition by substituting one specific value for x. Quantifiers give us a second way
-        to do this — instead of picking a single value, we make a claim about <strong className="text-[#E4D9FF]">every</strong> value or
+        to do this. Instead of picking a single value, we make a claim about <strong className="text-[#E4D9FF]">every</strong> value or
         <strong className="text-[#E4D9FF]"> at least one</strong> value in the domain at once.
       </SectionTitle>
       <div className="mt-4 grid sm:grid-cols-2 gap-3">
         <div className="rounded-lg bg-[#0F0A1A] border border-[#7C3AED]/50 p-4">
           <p className="font-mono text-2xl text-[#B48CFF]">∀x P(x)</p>
-          <p className="mt-1 text-sm text-[#E4D9FF]"><strong>Universal quantifier</strong> — "for all x, P(x)"</p>
+          <p className="mt-1 text-sm text-[#E4D9FF]"><strong>Universal quantifier</strong>: "for all x, P(x)"</p>
         </div>
         <div className="rounded-lg bg-[#0F0A1A] border border-[#F4B942]/50 p-4">
           <p className="font-mono text-2xl text-[#F4B942]">∃x P(x)</p>
-          <p className="mt-1 text-sm text-[#E4D9FF]"><strong>Existential quantifier</strong> — "there exists an x such that P(x)"</p>
+          <p className="mt-1 text-sm text-[#E4D9FF]"><strong>Existential quantifier</strong>: "there exists an x such that P(x)"</p>
         </div>
       </div>
-      <p className="mt-4 text-sm text-[#9C93B3]">Both always work relative to a <strong className="text-[#E4D9FF]">domain / universe of discourse</strong> — the quantifier only ranges over that set. Change the domain, and the truth value of the same quantified statement can change too.</p>
+      <p className="mt-4 text-sm text-[#9C93B3]">Both always work relative to a <strong className="text-[#E4D9FF]">domain / universe of discourse</strong>. The quantifier only ranges over that set. Change the domain, and the truth value of the same quantified statement can change too.</p>
     </Panel>
   );
 }
@@ -45,7 +45,7 @@ function QuantifierDemo({ symbol, colorClass, domainLabel, predicateLabel, value
         </table>
       </div>
       <div className={`mt-3 rounded-lg p-3 text-sm ${holds ? "bg-[#173626]/40 text-[#4ADE80]" : "bg-[#3A1C22]/40 text-[#F87171]"}`}>
-        <span className={`font-mono font-bold ${colorClass}`}>{symbol}</span> is <strong>{holds ? "TRUE" : "FALSE"}</strong> — {holds ? explainTrue : explainFalse}
+        <span className={`font-mono font-bold ${colorClass}`}>{symbol}</span> is <strong>{holds ? "TRUE" : "FALSE"}</strong>: {holds ? explainTrue : explainFalse}
       </div>
     </div>
   );
@@ -59,7 +59,7 @@ function UniversalQuantifier() {
     <Panel>
       <SectionTitle title="The universal quantifier: ∀">
         <span className="font-mono text-[#B48CFF]">∀x P(x)</span> reads "for all x, P(x)" (or "for every x, P(x)"). It is true exactly when
-        P(x) is true for <strong className="text-[#E4D9FF]">every single element</strong> of the domain — one failure is enough to make the whole statement false.
+        P(x) is true for <strong className="text-[#E4D9FF]">every single element</strong> of the domain. One failure is enough to make the whole statement false.
       </SectionTitle>
       <QuantifierDemo
         symbol="∀x P(x)"
@@ -81,7 +81,7 @@ function UniversalQuantifier() {
         test={(x) => x % 2 === 0}
         aggregate={(oks) => oks.every(Boolean)}
         explainTrue="every element of the domain makes Q(x) true."
-        explainFalse={<>x = 7 is a <strong>counterexample</strong> — a single element where the predicate fails is always enough to make a universal statement false.</>}
+        explainFalse={<>x = 7 is a <strong>counterexample</strong>, a single element where the predicate fails is always enough to make a universal statement false.</>}
       />
     </Panel>
   );
@@ -95,7 +95,7 @@ function ExistentialQuantifier() {
     <Panel>
       <SectionTitle title="The existential quantifier: ∃">
         <span className="font-mono text-[#F4B942]">∃x P(x)</span> reads "there exists an x such that P(x)" (or "for some x, P(x)"). It is
-        true as soon as P(x) is true for <strong className="text-[#E4D9FF]">at least one</strong> element of the domain — you only need to find one witness.
+        true as soon as P(x) is true for <strong className="text-[#E4D9FF]">at least one</strong> element of the domain. You only need to find one witness.
       </SectionTitle>
       <QuantifierDemo
         symbol="∃x P(x)"
@@ -105,7 +105,7 @@ function ExistentialQuantifier() {
         values={[1, 2, 3, 4]}
         test={(x) => x > 3}
         aggregate={(oks) => oks.some(Boolean)}
-        explainTrue="x = 4 is a witness — just one success is enough."
+        explainTrue="x = 4 is a witness. Just one success is enough."
         explainFalse="no element of the domain satisfies P(x)."
       />
       <QuantifierDemo
@@ -117,7 +117,7 @@ function ExistentialQuantifier() {
         test={(x) => x > 5}
         aggregate={(oks) => oks.some(Boolean)}
         explainTrue="a witness exists in the domain."
-        explainFalse="every element fails, so there is no witness anywhere in the domain — the existential claim is false."
+        explainFalse="every element fails, so there is no witness anywhere in the domain, so the existential claim is false."
       />
     </Panel>
   );
@@ -156,7 +156,7 @@ const translationExamples = [
   },
   {
     english: "All animals are mammals.",
-    legend: 'Domain: animals. M(x): "x is a mammal." (This statement is actually FALSE — birds are a counterexample.)',
+    legend: 'Domain: animals. M(x): "x is a mammal." (This statement is actually FALSE, because birds are a counterexample.)',
     logic: "∀x M(x)",
   },
   {
@@ -176,7 +176,7 @@ function TranslatingStatements() {
         {translationExamples.map((item) => <TranslationRow key={item.english} item={item} />)}
       </div>
       <div className="mt-5 rounded-lg bg-[#1A1330] p-4 text-sm text-[#E4D9FF]">
-        <strong>De Morgan's laws for quantifiers</strong> — negating a quantifier flips it into the other one:
+        <strong>De Morgan's laws for quantifiers</strong>: negating a quantifier flips it into the other one:
         <div className="mt-2 font-mono text-sm text-[#F4B942] space-y-1">
           <p>¬∀x P(x) ≡ ∃x ¬P(x) <span className="font-sans text-xs text-[#9C93B3]">→ "not everyone satisfies P" means "someone fails P"</span></p>
           <p>¬∃x P(x) ≡ ∀x ¬P(x) <span className="font-sans text-xs text-[#9C93B3]">→ "no one satisfies P" means "everyone fails P"</span></p>
@@ -187,13 +187,13 @@ function TranslatingStatements() {
 }
 
 // ---------------------------------------------------------------------------
-// 5. Nested quantifiers — intro
+// 5. Nested quantifiers: intro
 // ---------------------------------------------------------------------------
-function NestedIntro() {
+export function NestedIntro() {
   return (
     <Panel>
       <SectionTitle title="Nested quantifiers">
-        A predicate with two or more variables — like Q(x, y) — needs a quantifier for <strong className="text-[#E4D9FF]">every</strong> variable
+        A predicate with two or more variables, like Q(x, y), needs a quantifier for <strong className="text-[#E4D9FF]">every</strong> variable
         before it becomes a full proposition. When one quantifier sits inside the scope of another, we call them <strong className="text-[#E4D9FF]">nested quantifiers</strong>.
       </SectionTitle>
       <div className="mt-4 rounded-xl bg-[#0F0A1A] border border-[#211934] p-4">
@@ -205,7 +205,7 @@ function NestedIntro() {
 }
 
 // ---------------------------------------------------------------------------
-// 6. Order matters — interactive relation-grid lab
+// 6. Order matters: interactive relation-grid lab
 // ---------------------------------------------------------------------------
 const PEOPLE = ["Alice", "Bob", "Cara", "Dan"];
 
@@ -219,7 +219,7 @@ function defaultRelation() {
   ];
 }
 
-function NestedQuantifierLab() {
+export function NestedQuantifierLab() {
   const [rel, setRel] = useState(defaultRelation());
   function toggle(x, y) {
     setRel((current) => current.map((row, i) => row.map((cell, j) => (i === x && j === y ? !cell : cell))));
@@ -268,7 +268,7 @@ function NestedQuantifierLab() {
               ))}
             </tbody>
           </table>
-          <p className="mt-3 text-[11px] text-[#5B5470]">Tip: make one whole column all green to see ∃y∀x flip to TRUE — that column is a "universal influencer" everyone follows.</p>
+          <p className="mt-3 text-[11px] text-[#5B5470]">Tip: make one whole column all green to see ∃y∀x flip to TRUE. That column is a "universal influencer" everyone follows.</p>
         </div>
         <div className="space-y-2">
           {statements.map((item) => (
@@ -280,7 +280,7 @@ function NestedQuantifierLab() {
           ))}
         </div>
       </div>
-      <p className="mt-4 text-sm text-[#9C93B3]">Notice ∀x∃y and ∃y∀x can disagree even though they use the exact same predicate. ∀x∃y only needs a (possibly different) target for each x, but ∃y∀x demands one single y that works for everyone at once — a much stronger claim. That's why order changes the meaning whenever the quantifiers are different (∀ then ∃, or ∃ then ∀).</p>
+      <p className="mt-4 text-sm text-[#9C93B3]">Notice ∀x∃y and ∃y∀x can disagree even though they use the exact same predicate. ∀x∃y only needs a (possibly different) target for each x, but ∃y∀x demands one single y that works for everyone at once, which is a much stronger claim. That's why order changes the meaning whenever the quantifiers are different (∀ then ∃, or ∃ then ∀).</p>
     </Panel>
   );
 }
@@ -291,12 +291,12 @@ function NestedQuantifierLab() {
 const nestedTranslations = [
   {
     english: "For every real number x there is a real number y such that x + y = 0.",
-    legend: "Domain: real numbers. This is TRUE — just pick y = −x for any x.",
+    legend: "Domain: real numbers. This is TRUE. Just pick y = −x for any x.",
     logic: "∀x∃y (x + y = 0)",
   },
   {
     english: "There is a real number y such that for every real number x, x + y = 0.",
-    legend: "Domain: real numbers. This is FALSE — one fixed y cannot cancel out every possible x.",
+    legend: "Domain: real numbers. This is FALSE. One fixed y cannot cancel out every possible x.",
     logic: "∃y∀x (x + y = 0)",
   },
   {
@@ -311,11 +311,11 @@ const nestedTranslations = [
   },
 ];
 
-function NestedTranslations() {
+export function NestedTranslations() {
   return (
     <Panel>
       <SectionTitle title="Translating nested quantified statements">
-        The same "guess, then reveal" approach works with two variables — just watch the order of the words "every" and "some" closely.
+        The same "guess, then reveal" approach works with two variables, so just watch the order of the words "every" and "some" closely.
       </SectionTitle>
       <div className="mt-4 grid gap-3">
         {nestedTranslations.map((item) => <TranslationRow key={item.english} item={item} />)}
@@ -330,15 +330,12 @@ export default function QuantifiersSection() {
       <div>
         <p className="text-xs tracking-wide text-[#B48CFF] font-mono mb-2">WEEK 3 · PREDICATE LOGIC</p>
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-white">Quantifiers</h2>
-        <p className="mt-2 text-[#9C93B3] max-w-3xl">Quantifiers let a predicate speak about an entire domain at once — every element, or just one — and let us nest several variables together to describe genuinely rich relationships.</p>
+        <p className="mt-2 text-[#9C93B3] max-w-3xl">Quantifiers let a predicate speak about an entire domain at once, either every element or just one. Nested quantifiers (next tabs) let us describe relationships between several variables.</p>
       </div>
       <QuantifierIntro />
       <UniversalQuantifier />
       <ExistentialQuantifier />
       <TranslatingStatements />
-      <NestedIntro />
-      <NestedQuantifierLab />
-      <NestedTranslations />
     </div>
   );
 }

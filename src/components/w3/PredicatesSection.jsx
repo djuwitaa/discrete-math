@@ -12,7 +12,7 @@ function WhyNotEnough() {
   return (
     <Panel>
       <SectionTitle title="The core problem: why propositional logic isn't enough">
-        Propositional logic can combine statements with ∧, ∨, ¬, →, ↔ — but it has no way to talk about a whole
+        Propositional logic can combine statements with ∧, ∨, ¬, →, ↔, but it has no way to talk about a whole
         <em> family</em> of statements that share a pattern, like "x is greater than 3." Try it yourself below.
       </SectionTitle>
       <div className="mt-4 rounded-xl bg-[#0F0A1A] border border-[#211934] p-4">
@@ -28,12 +28,12 @@ function WhyNotEnough() {
             {picked} &gt; 3 is {picked > 3 ? "TRUE" : "FALSE"}
           </div>
         ) : (
-          <div className="mt-4 rounded-lg p-3 text-sm bg-[#1A1330] text-[#B48CFF]">Nothing is picked yet — so right now "x &gt; 3" is neither true nor false.</div>
+          <div className="mt-4 rounded-lg p-3 text-sm bg-[#1A1330] text-[#B48CFF]">Nothing is picked yet, so right now "x &gt; 3" is neither true nor false.</div>
         )}
       </div>
       <p className="mt-4 text-sm text-[#E4D9FF]">
         Notice the truth value keeps <strong>flipping</strong> depending on what you plug in. That is exactly the problem:
-        a statement with an unassigned variable is <strong className="text-[#F4B942]">not a proposition</strong> — it has no fixed truth
+        a statement with an unassigned variable is <strong className="text-[#F4B942]">not a proposition</strong>. It has no fixed truth
         value until the variable is given a specific value. Predicate logic is built to describe and reason about statements like this.
       </p>
     </Panel>
@@ -41,13 +41,13 @@ function WhyNotEnough() {
 }
 
 // ---------------------------------------------------------------------------
-// 2. Components of predicate logic — subject & predicate
+// 2. Components of predicate logic: subject & predicate
 // ---------------------------------------------------------------------------
 function AnatomyOfPredicate() {
   return (
     <Panel>
       <SectionTitle title="Components of predicate logic: subject and predicate">
-        Every predicate statement splits into two parts — a variable subject and a property being asserted about it.
+        Every predicate statement splits into two parts: a variable subject and a property being asserted about it.
       </SectionTitle>
       <div className="mt-5 rounded-xl bg-[#0F0A1A] border border-[#211934] p-5">
         <p className="font-mono text-xl text-center">
@@ -133,12 +133,12 @@ function UniverseAndFunction() {
             <tbody><tr>{current.values.map((v) => <td key={v} className={`p-2 text-center ${current.test(v) ? "text-[#4ADE80]" : "text-[#F87171]"}`}>{current.test(v) ? "T" : "F"}</td>)}</tr></tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-[#E4D9FF]">{domain === "integers" ? "Over the integers, primality is a meaningful, well-defined idea." : "Over the real numbers, \"prime\" barely applies at all — almost nothing here is a whole number, so the predicate becomes false almost everywhere. Same P(x), different domain, different meaning."}</p>
+        <p className="mt-3 text-sm text-[#E4D9FF]">{domain === "integers" ? "Over the integers, primality is a meaningful, well-defined idea." : "Over the real numbers, \"prime\" barely applies at all, because almost nothing here is a whole number, so the predicate becomes false almost everywhere. Same P(x), different domain, different meaning."}</p>
       </div>
       <div className="mt-4 rounded-lg bg-[#1A1330] p-4 text-sm text-[#E4D9FF]">
         <strong>Predicates as functions:</strong> you can think of a predicate P as a function that maps every element of the domain to
         exactly one of two outputs: <span className="font-mono text-[#4ADE80]">True</span> or <span className="font-mono text-[#F87171]">False</span>.
-        Formally, P : D → {"{True, False}"}, just like a math function maps inputs to outputs — except the only possible outputs are truth values.
+        Formally, P : D → {"{True, False}"}, just like a math function maps inputs to outputs, except the only possible outputs are truth values.
       </div>
     </Panel>
   );
@@ -188,7 +188,7 @@ function PropositionalFunctionIntro() {
   return (
     <PredicateWalkthrough
       title="Propositional functions: turning a pattern into a proposition"
-      statement={<>We denote the statement by <span className="font-mono text-[#F4B942]">P(x)</span>, where P is the predicate and x is the variable. Once a value is assigned to x, the statement becomes a proposition with a fixed truth value — this is why P(x) is also called a <strong className="text-[#E4D9FF]">propositional function</strong>.</>}
+      statement={<>We denote the statement by <span className="font-mono text-[#F4B942]">P(x)</span>, where P is the predicate and x is the variable. Once a value is assigned to x, the statement becomes a proposition with a fixed truth value. This is why P(x) is also called a <strong className="text-[#E4D9FF]">propositional function</strong>.</>}
       notation='P(x) → "x > 3"'
       cases={[
         { call: "P(5)", substitution: 'Substitute x = 5 into "x > 3"', result: true },
@@ -205,7 +205,7 @@ function PredicateExamples() {
   return (
     <div className="space-y-5">
       <PredicateWalkthrough
-        title="Example 1 — Evaluating a one-variable predicate"
+        title="Example 1: Evaluating a one-variable predicate"
         statement={<>Let P(x) denote the statement "x is greater than 3." Find the truth values of P(4) and P(2).</>}
         notation="P(x) → x > 3"
         cases={[
@@ -214,8 +214,8 @@ function PredicateExamples() {
         ]}
       />
       <PredicateWalkthrough
-        title="Example 2 — A predicate over named objects, not just numbers"
-        statement={<>Let A(x) denote "Computer x is under attack." Campus status: only <strong className="text-[#E4D9FF]">CS2</strong> and <strong className="text-[#E4D9FF]">MATH1</strong> are currently under attack. The domain doesn't have to be numbers — it can be any set of objects.</>}
+        title="Example 2: A predicate over named objects, not just numbers"
+        statement={<>Let A(x) denote "Computer x is under attack." Campus status: only <strong className="text-[#E4D9FF]">CS2</strong> and <strong className="text-[#E4D9FF]">MATH1</strong> are currently under attack. The domain doesn't have to be numbers. It can be any set of objects.</>}
         notation='A(x) → "Computer x is under attack"'
         cases={[
           { call: "A(CS1)", substitution: "CS1 is not on the active-attack list", result: false },
@@ -224,8 +224,8 @@ function PredicateExamples() {
         ]}
       />
       <PredicateWalkthrough
-        title="Example 3 — A predicate with two arguments"
-        statement={<>Let Q(x, y) denote the statement "x = y + 3," where x and y are variables and Q is the predicate. A predicate can take more than one argument — it just needs a value for every variable before it becomes a proposition.</>}
+        title="Example 3: A predicate with two arguments"
+        statement={<>Let Q(x, y) denote the statement "x = y + 3," where x and y are variables and Q is the predicate. A predicate can take more than one argument. It just needs a value for every variable before it becomes a proposition.</>}
         notation="Q(x, y) → x = y + 3"
         cases={[
           { call: "Q(1, 2)", substitution: 'Substitute x = 1, y = 2 into "x = y + 3" → "1 = 2 + 3"', result: false },
@@ -233,7 +233,7 @@ function PredicateExamples() {
         ]}
       />
       <PredicateWalkthrough
-        title="Example 4 — Two-argument predicate over named objects"
+        title="Example 4: Two-argument predicate over named objects"
         statement={<>Let A(c, n) denote "Computer c is connected to network n." Status: MATH1 is connected to CAMPUS2, but not to CAMPUS1.</>}
         notation='A(c, n) → "Computer c is connected to network n"'
         cases={[
@@ -242,7 +242,7 @@ function PredicateExamples() {
         ]}
       />
       <PredicateWalkthrough
-        title="Example 5 — A predicate with three arguments"
+        title="Example 5: A predicate with three arguments"
         statement={<>Let R(x, y, z) denote "x + y = z," where x, y, and z are variables. Nothing stops a predicate from taking three, four, or any number of arguments.</>}
         notation="R(x, y, z) → x + y = z"
         cases={[
@@ -276,7 +276,7 @@ function NPlacePredicate() {
           </div>
         ))}
       </div>
-      <p className="mt-3 text-xs text-[#9C93B3]">Fun fact: a 0-place predicate — a predicate with no variables left to fill in — is exactly what we called a <strong className="text-[#E4D9FF]">proposition</strong> back in Week 1. Propositional logic is really just the n = 0 special case of predicate logic.</p>
+      <p className="mt-3 text-xs text-[#9C93B3]">Fun fact: a 0-place predicate (a predicate with no variables left to fill in) is exactly what we called a <strong className="text-[#E4D9FF]">proposition</strong> back in Week 1. Propositional logic is really just the n = 0 special case of predicate logic.</p>
     </Panel>
   );
 }
@@ -318,7 +318,7 @@ export default function PredicatesSection() {
       <div>
         <p className="text-xs tracking-wide text-[#B48CFF] font-mono mb-2">WEEK 3 · PREDICATE LOGIC</p>
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-white">Predicate basics</h2>
-        <p className="mt-2 text-[#9C93B3] max-w-3xl">Propositional logic treats every statement as an unbreakable block. Predicate logic opens that block up — letting us talk about variables, properties, and relationships, then plug in real values to get an answer.</p>
+        <p className="mt-2 text-[#9C93B3] max-w-3xl">Propositional logic treats every statement as an unbreakable block. Predicate logic opens that block up, letting us talk about variables, properties, and relationships, then plug in real values to get an answer.</p>
       </div>
       <WhyNotEnough />
       <AnatomyOfPredicate />
