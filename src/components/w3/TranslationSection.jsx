@@ -105,7 +105,7 @@ const TRY = [
   { s: "There is a man who is tall.", legend: "M(x): x is a man. T(x): x is tall.", f: "∃x (M(x) ∧ T(x))" },
   { s: "There is a student who likes discrete mathematics.", legend: "S(x): x is a student. L(x): x likes discrete mathematics.", f: "∃x (S(x) ∧ L(x))" },
   { s: "Some dogs are friendly.", legend: "D(x): x is a dog. Fr(x): x is friendly.", f: "∃x (D(x) ∧ Fr(x))" },
-  { s: "Every mother loves her child.", legend: "Mo(x, y): x is the mother of y. L(x, y): x loves y.", f: "∀x ∀y (Mo(x, y) → L(x, y))" },
+  { s: "Every mother loves her child.", legend: "Mo(x, y): x is the mother of y. L(x, y): x loves y.", f: "∀x ∀y (Mo(x, y) → L(x, y)), or in a more detail (if we break it down one by one): ∀x (M(x) → ∀y (ChildOf(y,x) → L(x,y)))" },
 ];
 
 function TryThis() {
