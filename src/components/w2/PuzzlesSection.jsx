@@ -61,7 +61,7 @@ function ChoiceGame({ question, choices, answer, explanation, table, tableCaptio
       {choice !== null && <div className={`mt-4 rounded-lg p-3 text-sm ${correct ? "bg-[#173626]/40 text-[#E4D9FF]" : "bg-[#3A1C22]/40 text-[#E4D9FF]"}`}>{explanation}</div>}
       {choice !== null && table && (
         <div className="mt-4">
-          <p className="text-xs tracking-wide text-[#F4B942] font-mono mb-1">TRUTH TABLE — WHY THIS WORKS</p>
+          <p className="text-xs tracking-wide text-[#F4B942] font-mono mb-1">TRUTH TABLE: WHY THIS WORKS</p>
           <IntroTable rows={table} caption={tableCaption} />
         </div>
       )}
@@ -122,7 +122,7 @@ function Muddy() {
       rows={[
         ["Round", "What each child sees", "What each child knows so far", "Answer"],
         ["Round 1", "Sees mud only on the other child", "Cannot rule out being clean themselves yet", "!\"No\" (both)"],
-        ["Round 2", "Hears both said \"No\" in round 1", "If I were clean, the other child would have seen only a clean forehead and answered \"Yes\" in round 1 — but they didn't", "!\"Yes\" (both)"],
+        ["Round 2", "Hears both said \"No\" in round 1", "If I were clean, the other child would have seen only a clean forehead and answered \"Yes\" in round 1, but they didn't", "!\"Yes\" (both)"],
       ]}
     />
     <div className="mt-4 rounded-xl bg-[#0F0A1A] border border-[#211934] p-4">
@@ -145,7 +145,7 @@ function ForkRoad() {
       ]}
       answer={1}
       explanation="Ask the villager what they would say. A truth-teller truthfully reports their Yes/No answer; a liar lies about their false answer. Both lead you to the same reliable response: take the left road exactly when the answer is Yes."
-      tableCaption="'Left → ruins?' is the hidden fact. 'Would say' is what the villager actually answers to the nested question. Notice the answer is 'Yes' in both worlds exactly when the left road really leads to the ruins — so the question is safe regardless of who you ask."
+      tableCaption="'Left → ruins?' is the hidden fact. 'Would say' is what the villager actually answers to the nested question. Notice the answer is 'Yes' in both worlds exactly when the left road really leads to the ruins, so the question is safe regardless of who you ask."
       table={[
         ["Villager type", "Left road → ruins?", "Direct answer they'd give to \"does left lead to ruins?\"", "What they say when asked \"would you say Yes?\"", "Your conclusion"],
         ["Truth-teller", "True", "Yes (tells truth)", "!Yes (truthfully reports own Yes)", "Take left ✓"],

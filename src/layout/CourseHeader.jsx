@@ -17,6 +17,12 @@ const WEEK_META = {
     description: "Go beyond fixed statements: variables, predicates, domains, and quantifiers that reason about entire universes of objects.",
     chips: ["∀x P(x): for every x", "∃x P(x): for some x"],
   },
+  4: {
+    eyebrow: "WEEK 4 · INFERENCE & PROOFS",
+    title: "Rules of Inference and Proofs",
+    description: "Learn how valid arguments are built from premises, then use direct proof, contraposition, contradiction, and cases to prove statements.",
+    chips: ["p, p → q ∴ q", "¬q, p → q ∴ ¬p"],
+  },
 };
 
 export default function CourseHeader({ week }) {

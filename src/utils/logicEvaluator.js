@@ -236,7 +236,7 @@ export function generateTruthTable(expression) {
 
 /**
  * Check whether two logic strings are logically equivalent (same truth value
- * on every row). Returns { isEquivalent, counterExample } — counterExample is
+ * on every row). Returns { isEquivalent, counterExample }, where counterExample is
  * the first assignment where the two expressions disagree.
  */
 export function checkEquivalence(expressionA, expressionB) {

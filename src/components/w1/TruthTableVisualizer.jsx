@@ -276,7 +276,7 @@ export default function TruthTableVisualizer() {
               </div>
               <div className="p-3 rounded-lg bg-[#130E20] border border-[#211934]">
                 <div className="font-bold text-[#7DD3FC] mb-0.5">Contingency</div>
-                <div className="text-[#9C93B3]">Neither always true nor always false — its truth value <strong className="text-white">depends</strong> on the variables.</div>
+                <div className="text-[#9C93B3]">Neither always true nor always false. Its truth value <strong className="text-white">depends</strong> on the variables.</div>
                 <div className="mt-1 font-mono text-[11px] text-[#5B5470]">Example: p → q</div>
               </div>
             </div>
