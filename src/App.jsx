@@ -92,21 +92,22 @@ export default function App() {
             input, button, select, textarea { font-family: inherit; }
             .font-mono input, input.font-mono, select.font-mono { font-family: Consolas, monospace; }
             main p, main li, main h2, main h3 { overflow-wrap: anywhere; }
+            main .max-w-2xl, main .max-w-3xl, main .max-w-4xl { max-width: none; }
             main button { min-height: 36px; }
             .scroll-thin { scrollbar-width: thin; }
           `}</style>
 
       <CourseHeader week={week} />
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
+      <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row">
         <CourseSidebar week={week} onWeekChange={setWeek} />
         <div className="min-w-0 flex-1">
           {weekConfig && <WeekNavigation sections={weekConfig.nav} activeSection={section} onSectionChange={handleSectionChange} />}
-          <main className="px-4 sm:px-6 py-6 sm:py-10">
+          <main className="px-3 sm:px-5 lg:px-6 py-5 sm:py-8">
             {week === 1 ? <FoundationsSection /> : ActiveComponent ? <ActiveComponent /> : null}
           </main>
         </div>
       </div>
-      <footer className="border-t border-[#211934] px-4 sm:px-6 py-6 sm:py-8 text-center text-sm text-[#5B5470]">
+      <footer className="border-t border-[#211934] px-3 sm:px-5 lg:px-6 py-5 sm:py-6 text-center text-sm text-[#5B5470]">
         Created by Djuwita · since 2026
       </footer>
     </div>

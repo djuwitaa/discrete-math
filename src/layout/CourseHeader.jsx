@@ -28,11 +28,11 @@ const WEEK_META = {
 export default function CourseHeader({ week }) {
   const meta = WEEK_META[week] ?? WEEK_META[1];
   return (
-    <header className="border-b border-[#211934] px-4 sm:px-6 py-6 md:py-10">
-      <div className="max-w-6xl mx-auto">
+    <header className="border-b border-[#211934] px-3 sm:px-5 lg:px-6 py-5 md:py-8">
+      <div className="max-w-screen-2xl mx-auto">
         <p className="font-mono text-[11px] sm:text-xs text-[#B48CFF] tracking-wide">{meta.eyebrow} · DISCRETE MATHEMATICS</p>
         <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl font-semibold text-white mt-2 sm:mt-3 leading-tight">{meta.title}</h1>
-        <p className="text-sm sm:text-base text-[#9C93B3] mt-3 max-w-xl">{meta.description}</p>
+        <p className="text-sm sm:text-base text-[#9C93B3] mt-2">{meta.description}</p>
         <div className="mt-4 sm:mt-5 flex flex-wrap gap-2 sm:gap-3 font-mono text-xs sm:text-sm text-[#5B5470]">
           {meta.chips.map((chip) => <span key={chip} className="px-3 py-1.5 rounded-lg bg-[#130E20] border border-[#2A2140]">{chip}</span>)}
         </div>

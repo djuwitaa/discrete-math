@@ -2,7 +2,7 @@
 // week feels consistent (dark panels, headings, and data tables).
 
 export function Panel({ children, className = "" }) {
-  return <section className={`rounded-2xl bg-[#130E20] border border-[#2A2140] p-4 sm:p-6 ${className}`}>{children}</section>;
+  return <section className={`rounded-2xl bg-[#130E20] border border-[#2A2140] p-3 sm:p-5 ${className}`}>{children}</section>;
 }
 
 export function SectionTitle({ title, children }) {

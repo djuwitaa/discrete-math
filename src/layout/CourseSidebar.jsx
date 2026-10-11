@@ -6,7 +6,7 @@ const WEEKS = Array.from({ length: 16 }, (_, index) => ({
 
 export default function CourseSidebar({ week, onWeekChange }) {
   return (
-    <aside className="md:w-60 md:shrink-0 border-b md:border-b-0 md:border-r border-[#211934] px-4 py-3 md:p-4 md:py-6">
+    <aside className="md:w-60 md:shrink-0 border-b md:border-b-0 md:border-r border-[#211934] px-3 py-3 md:p-3 md:py-5">
       <p className="hidden md:block font-mono text-[11px] text-[#5B5470] px-3 mb-2">COURSE ROADMAP</p>
       <div className="flex md:flex-col overflow-x-auto md:overflow-visible gap-2 md:gap-1 scroll-thin">
         {WEEKS.map((item) => (
