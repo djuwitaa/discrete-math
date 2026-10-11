@@ -23,6 +23,24 @@ const WEEK_META = {
     description: "Learn how valid arguments are built from premises, then use direct proof, contraposition, contradiction, and cases to prove statements.",
     chips: ["p, p → q ∴ q", "¬q, p → q ∴ ¬p"],
   },
+  5: {
+    eyebrow: "WEEK 5 · SETS, FUNCTIONS, SEQUENCES AND SUMS",
+    title: "Sets, Functions, Sequences and Sums",
+    description: "The vocabulary of all discrete math: sets and their operations, functions and their types, sequences, summations, cardinality, and the basic counting rules.",
+    chips: ["|A ∪ B| = |A| + |B| - |A ∩ B|", "f: A → B", "|A × B| = |A| · |B|"],
+  },
+  6: {
+    eyebrow: "WEEK 6 · INDUCTION AND RECURSION 1",
+    title: "Mathematical Induction",
+    description: "Prove a statement for every positive integer with just two checks: the basis step and the inductive step. Learn the template and practice it step by step.",
+    chips: ["P(1) ∧ ∀k (P(k) → P(k+1))", "∴ ∀n P(n)"],
+  },
+  7: {
+    eyebrow: "WEEK 7 · INDUCTION AND RECURSION 2",
+    title: "Strong Induction, Recursion and Recurrences",
+    description: "Use strong induction and the well ordering principle, define objects recursively, and solve recurrence relations.",
+    chips: ["P(1..k) → P(k+1)", "a(n) = a(n-1) + a(n-2)"],
+  },
 };
 
 export default function CourseHeader({ week }) {

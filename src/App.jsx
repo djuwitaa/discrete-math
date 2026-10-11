@@ -11,6 +11,22 @@ import NestedQuantifiersSection from "./components/w3/NestedQuantifiersSection";
 import InferenceRulesSection from "./components/w4/InferenceRulesSection";
 import BuildingArgumentsSection from "./components/w4/BuildingArgumentsSection";
 import ProofMethodsSection from "./components/w4/ProofMethodsSection";
+import TilingSection from "./components/w4/TilingSection";
+import ChompSection from "./components/w4/ChompSection";
+import SetsSection from "./components/w5/SetsSection";
+import SetOperationsSection from "./components/w5/SetOperationsSection";
+import FunctionsSection from "./components/w5/FunctionsSection";
+import CartesianSection from "./components/w5/CartesianSection";
+import SequencesSection from "./components/w5/SequencesSection";
+import CountingRulesSection from "./components/w5/CountingRulesSection";
+import InductionIdeaSection from "./components/w6/InductionIdeaSection";
+import InductionProofsSection from "./components/w6/InductionProofsSection";
+import InductionPracticeSection from "./components/w6/InductionPracticeSection";
+import InductionCodeSection from "./components/w6/InductionCodeSection";
+import StrongInductionSection from "./components/w7/StrongInductionSection";
+import WellOrderingSection from "./components/w7/WellOrderingSection";
+import RecursionSection from "./components/w7/RecursionSection";
+import RecurrenceSection from "./components/w7/RecurrenceSection";
 import CourseHeader from "./layout/CourseHeader";
 import Week2Exercises from "./components/exercises/Week2Exercises";
 import Week3Exercises from "./components/exercises/Week3Exercises";
@@ -58,11 +74,64 @@ const SECTIONS_BY_WEEK = {
       { id: "rules", number: "01", label: "Rules of Inference" },
       { id: "arguments", number: "02", label: "Building Arguments" },
       { id: "proofs", number: "03", label: "Proof Methods" },
+      { id: "tiling", number: "04", label: "Tiling" },
+      { id: "chomp", number: "05", label: "Game of Chomp" },
     ],
     components: {
       rules: InferenceRulesSection,
       arguments: BuildingArgumentsSection,
       proofs: ProofMethodsSection,
+      tiling: TilingSection,
+      chomp: ChompSection,
+    },
+  },
+  5: {
+    defaultSection: "sets",
+    nav: [
+      { id: "sets", number: "01", label: "Sets" },
+      { id: "operations", number: "02", label: "Set Operations" },
+      { id: "functions", number: "03", label: "Functions" },
+      { id: "cartesian", number: "04", label: "Cartesian Products" },
+      { id: "sequences", number: "05", label: "Sequences and Sums" },
+      { id: "counting", number: "06", label: "Sum and Product Rules" },
+    ],
+    components: {
+      sets: SetsSection,
+      operations: SetOperationsSection,
+      functions: FunctionsSection,
+      cartesian: CartesianSection,
+      sequences: SequencesSection,
+      counting: CountingRulesSection,
+    },
+  },
+  6: {
+    defaultSection: "idea",
+    nav: [
+      { id: "idea", number: "01", label: "The Idea" },
+      { id: "proofs", number: "02", label: "Step by Step Proofs" },
+      { id: "practice", number: "03", label: "Practice Lab" },
+      { id: "code", number: "04", label: "Induction in Code" },
+    ],
+    components: {
+      idea: InductionIdeaSection,
+      proofs: InductionProofsSection,
+      practice: InductionPracticeSection,
+      code: InductionCodeSection,
+    },
+  },
+  7: {
+    defaultSection: "strong",
+    nav: [
+      { id: "strong", number: "01", label: "Strong Induction" },
+      { id: "wop", number: "02", label: "Well Ordering" },
+      { id: "recursion", number: "03", label: "Recursion" },
+      { id: "recurrence", number: "04", label: "Recurrence Relations" },
+    ],
+    components: {
+      strong: StrongInductionSection,
+      wop: WellOrderingSection,
+      recursion: RecursionSection,
+      recurrence: RecurrenceSection,
     },
   },
 };
@@ -73,6 +142,9 @@ export default function App() {
     2: SECTIONS_BY_WEEK[2].defaultSection,
     3: SECTIONS_BY_WEEK[3].defaultSection,
     4: SECTIONS_BY_WEEK[4].defaultSection,
+    5: SECTIONS_BY_WEEK[5].defaultSection,
+    6: SECTIONS_BY_WEEK[6].defaultSection,
+    7: SECTIONS_BY_WEEK[7].defaultSection,
   });
 
   const weekConfig = SECTIONS_BY_WEEK[week];

@@ -1,7 +1,7 @@
 const WEEKS = Array.from({ length: 16 }, (_, index) => ({
   number: index + 1,
-  label: index === 0 ? "Foundations" : index === 1 ? "Logic & Proofs" : index === 2 ?   "Predicate Logic and Quantifier" : index === 3 ? "Inference & Proofs" : `Week ${index + 1}`,
-    available: index < 4,
+  label: index === 0 ? "Foundations" : index === 1 ? "Logic & Proofs" : index === 2 ?   "Predicate Logic and Quantifier" :   index === 3 ? "Inference & Proofs" : index === 4 ? "Sets, Functions, Sums" : index === 5 ? "Mathematical Induction" : index === 6 ? "Strong Induction & Recursion" : `Week ${index + 1}`,
+      available: index < 7,
 }));
 
 export default function CourseSidebar({ week, onWeekChange }) {
