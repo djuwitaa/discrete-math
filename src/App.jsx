@@ -12,6 +12,8 @@ import InferenceRulesSection from "./components/w4/InferenceRulesSection";
 import BuildingArgumentsSection from "./components/w4/BuildingArgumentsSection";
 import ProofMethodsSection from "./components/w4/ProofMethodsSection";
 import CourseHeader from "./layout/CourseHeader";
+import Week2Exercises from "./components/exercises/Week2Exercises";
+import Week3Exercises from "./components/exercises/Week3Exercises";
 import CourseSidebar from "./layout/CourseSidebar";
 import WeekNavigation from "./layout/WeekNavigation";
 
@@ -22,11 +24,13 @@ const SECTIONS_BY_WEEK = {
       { id: "applications", number: "01", label: "Applications" },
       { id: "puzzles", number: "02", label: "Puzzles" },
       { id: "equivalences", number: "03", label: "Equivalences" },
+      { id: "exercises", number: "04", label: "Exercises" },
     ],
     components: {
       applications: ApplicationsSection,
       puzzles: PuzzlesSection,
       equivalences: EquivalencesSection,
+      exercises: Week2Exercises,
     },
   },
   3: {
@@ -37,6 +41,7 @@ const SECTIONS_BY_WEEK = {
       { id: "qexamples", number: "03", label: "Quantifier Examples" },
       { id: "translation", number: "04", label: "Translation" },
       { id: "nested", number: "05", label: "Nested Quantifiers" },
+      { id: "exercises", number: "06", label: "Exercises" },
     ],
     components: {
       predicates: PredicatesSection,
@@ -44,6 +49,7 @@ const SECTIONS_BY_WEEK = {
       qexamples: QuantifierExamplesSection,
       translation: TranslationSection,
       nested: NestedQuantifiersSection,
+      exercises: Week3Exercises,
     },
   },
   4: {
@@ -78,13 +84,16 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0714] text-[#F3F0FA]"     style={{ fontFamily: "Rubik, Calibri, sans-serif" }}>
+    <div className="min-h-screen overflow-x-hidden bg-[#0A0714] text-[#F3F0FA]"     style={{ fontFamily: "Rubik, Calibri, sans-serif" }}>
       <style>{`
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500;600&display=swap');
             .font-heading { font-family: 'Poppins', Calibri, sans-serif; }
             .font-mono, code, pre, kbd { font-family: Consolas, monospace; }
             input, button, select, textarea { font-family: inherit; }
             .font-mono input, input.font-mono, select.font-mono { font-family: Consolas, monospace; }
+            main p, main li, main h2, main h3 { overflow-wrap: anywhere; }
+            main button { min-height: 36px; }
+            .scroll-thin { scrollbar-width: thin; }
           `}</style>
 
       <CourseHeader week={week} />
@@ -92,12 +101,12 @@ export default function App() {
         <CourseSidebar week={week} onWeekChange={setWeek} />
         <div className="min-w-0 flex-1">
           {weekConfig && <WeekNavigation sections={weekConfig.nav} activeSection={section} onSectionChange={handleSectionChange} />}
-          <main className="px-6 py-10">
+          <main className="px-4 sm:px-6 py-6 sm:py-10">
             {week === 1 ? <FoundationsSection /> : ActiveComponent ? <ActiveComponent /> : null}
           </main>
         </div>
       </div>
-      <footer className="border-t border-[#211934] px-6 py-8 text-center text-sm text-[#5B5470]">
+      <footer className="border-t border-[#211934] px-4 sm:px-6 py-6 sm:py-8 text-center text-sm text-[#5B5470]">
         Created by Djuwita · since 2026
       </footer>
     </div>

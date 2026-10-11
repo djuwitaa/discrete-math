@@ -39,7 +39,8 @@ export function WorkedExample({ tag, title, given, asked, steps, answer }) {
               <div className="min-w-0">
                 {step.title && <p className="text-sm font-semibold text-[#E4D9FF]">{step.title}</p>}
                 {step.text && <p className="text-sm text-[#C9BFE3]">{step.text}</p>}
-                {step.formula && <p className="mt-1 font-mono text-sm text-[#F4B942] break-words">{step.formula}</p>}
+                {step.formula && <p className="mt-1 font-mono text-sm text-[#F4B942] break-words whitespace-pre-wrap">{step.formula}</p>}
+                {step.extra && <div className="mt-2">{step.extra}</div>}
               </div>
             </li>
           ))}

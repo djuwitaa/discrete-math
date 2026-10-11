@@ -12,8 +12,8 @@ const WEEK_META = {
     chips: ["p → q ≡ ¬p ∨ q", "¬(p ∧ q) ≡ ¬p ∨ ¬q"],
   },
   3: {
-    eyebrow: "WEEK 3 · PREDICATE LOGIC",
-    title: "Predicate Logic",
+    eyebrow: "WEEK 3 · PREDICATE LOGIC AND QUANTIFIER",
+    title: "Predicate Logic and Quantifier",
     description: "Go beyond fixed statements: variables, predicates, domains, and quantifiers that reason about entire universes of objects.",
     chips: ["∀x P(x): for every x", "∃x P(x): for some x"],
   },
@@ -28,12 +28,12 @@ const WEEK_META = {
 export default function CourseHeader({ week }) {
   const meta = WEEK_META[week] ?? WEEK_META[1];
   return (
-    <header className="border-b border-[#211934] px-6 py-8 md:py-10">
+    <header className="border-b border-[#211934] px-4 sm:px-6 py-6 md:py-10">
       <div className="max-w-6xl mx-auto">
-        <p className="font-mono text-xs text-[#B48CFF] tracking-wide">{meta.eyebrow} · DISCRETE MATHEMATICS</p>
-        <h1 className="font-heading text-3xl md:text-5xl font-semibold text-white mt-3 leading-tight">{meta.title}</h1>
-        <p className="text-[#9C93B3] mt-3 max-w-xl">{meta.description}</p>
-        <div className="mt-5 flex flex-wrap gap-3 font-mono text-sm text-[#5B5470]">
+        <p className="font-mono text-[11px] sm:text-xs text-[#B48CFF] tracking-wide">{meta.eyebrow} · DISCRETE MATHEMATICS</p>
+        <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl font-semibold text-white mt-2 sm:mt-3 leading-tight">{meta.title}</h1>
+        <p className="text-sm sm:text-base text-[#9C93B3] mt-3 max-w-xl">{meta.description}</p>
+        <div className="mt-4 sm:mt-5 flex flex-wrap gap-2 sm:gap-3 font-mono text-xs sm:text-sm text-[#5B5470]">
           {meta.chips.map((chip) => <span key={chip} className="px-3 py-1.5 rounded-lg bg-[#130E20] border border-[#2A2140]">{chip}</span>)}
         </div>
       </div>

@@ -250,7 +250,7 @@ function LawSprint() {
   }
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 sm:p-6">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-white font-heading font-semibold flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#F4B942]" /> Law sprint</p>

@@ -9,7 +9,7 @@ const TABS = [
 ];
 
 function Shell({ title, children }) {
-  return <div className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-6"><p className="text-white font-heading font-semibold">{title}</p>{children}</div>;
+  return <div className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-4 sm:p-6"><p className="text-white font-heading font-semibold">{title}</p>{children}</div>;
 }
 
 function IntroTable({ rows, caption }) {

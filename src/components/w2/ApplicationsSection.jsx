@@ -26,7 +26,7 @@ export default function ApplicationsSection() {
           </button>
         ))}
       </div>
-      <div className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-6">
+      <div className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-4 sm:p-6">
         <p className="text-[#E4D9FF] italic border-l-2 border-[#7C3AED] pl-3">"{item.prompt}"</p>
         <div className="mt-5 rounded-xl bg-[#0F0A1A] border border-[#211934] px-4 py-4">
           <p className="text-xs text-[#9C93B3] uppercase tracking-wide">Logical shape</p>

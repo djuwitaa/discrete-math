@@ -76,7 +76,7 @@ export default function TruthTableVisualizer() {
   const quizScore = quizSubmitted && tableData ? tableData.rows.filter((row, index) => quizAnswers[index] === row.result).length : null;
 
   return (
-    <section className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-6 space-y-5">
+    <section className="rounded-2xl bg-[#130E20] border border-[#2A2140] p-4 sm:p-6 space-y-5">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <p className="text-xs tracking-wide text-[#B48CFF] font-mono mb-2">INTERACTIVE TOOL</p>

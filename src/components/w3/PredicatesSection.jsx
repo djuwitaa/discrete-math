@@ -312,6 +312,103 @@ function ProgramExecutionDemo() {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Predicates over a domain of people
+// ---------------------------------------------------------------------------
+const PEOPLE_EXAMPLES = [
+  { sentence: "x is a student", subject: "x", predicate: "Student", formula: "Student(x)", note: "Open statement. It becomes true or false once x is replaced by a person from the domain." },
+  { sentence: "Rina is a student", subject: "Rina", predicate: "Student", formula: "Student(Rina)", note: "Replace x with the constant Rina. Now it has a truth value." },
+  { sentence: "x is a lecturer", subject: "x", predicate: "Lecturer", formula: "Lecturer(x)", note: "Same idea, different property." },
+  { sentence: "The dog is sleeping", subject: "Dog", predicate: "Sleeping", formula: "Sleeping(Dog)", note: "The property is Sleeping. The subject Dog is the argument. In general: Sleeping(x) with x = Dog." },
+  { sentence: "Budi is tall", subject: "Budi", predicate: "Tall", formula: "Tall(Budi)", note: "Adjectives work as predicates too." },
+  { sentence: "x likes y", subject: "x, y", predicate: "Likes", formula: "Likes(x, y)", note: "Two subjects means a two-place predicate." },
+];
+
+function PeoplePredicates() {
+  const [index, setIndex] = useState(3);
+  const [quiz, setQuiz] = useState({});
+  const current = PEOPLE_EXAMPLES[index];
+
+  const questions = [
+    { id: "q1", text: "Write \"Siti is a doctor\" as a predicate.", options: ["Doctor(Siti)", "doctor(siti)", "Siti(Doctor)"], answer: 0, why: "The property is the predicate name (capital first letter), the person is the argument." },
+    { id: "q2", text: "Which one follows the naming convention?", options: ["sleeping(Dog)", "Sleeping(Dog)", "SLEEPING(dog)"], answer: 1, why: "Predicate names and named individuals both start with a capital letter. Variables like x stay lowercase." },
+    { id: "q3", text: "In Student(x), what is x?", options: ["The predicate", "The variable (the subject)", "The truth value"], answer: 1, why: "Student is the predicate. x is a placeholder for an element of the domain." },
+  ];
+
+  return (
+    <Panel>
+      <SectionTitle title="Predicates with a domain of people">
+        Let the universe of discourse be a set of people (and a few named things). A predicate is a property written with a capital first letter, and its argument goes inside brackets.
+      </SectionTitle>
+
+      <div className="mt-4 grid md:grid-cols-3 gap-3 text-sm">
+        <div className="rounded-xl bg-[#0F0A1A] border border-[#2A2140] p-4">
+          <p className="text-xs font-semibold text-[#B48CFF]">RULE 1</p>
+          <p className="mt-1 text-[#C9BFE3]">The predicate name starts with a capital letter.</p>
+          <p className="mt-2 font-mono text-[#F4B942]">Student(x)</p>
+        </div>
+        <div className="rounded-xl bg-[#0F0A1A] border border-[#2A2140] p-4">
+          <p className="text-xs font-semibold text-[#B48CFF]">RULE 2</p>
+          <p className="mt-1 text-[#C9BFE3]">A specific individual also starts with a capital letter.</p>
+          <p className="mt-2 font-mono text-[#F4B942]">Sleeping(Dog)</p>
+        </div>
+        <div className="rounded-xl bg-[#0F0A1A] border border-[#2A2140] p-4">
+          <p className="text-xs font-semibold text-[#B48CFF]">RULE 3</p>
+          <p className="mt-1 text-[#C9BFE3]">A variable is a lowercase letter that stands for any element of the domain.</p>
+          <p className="mt-2 font-mono text-[#F4B942]">x, y, z</p>
+        </div>
+      </div>
+
+      <p className="mt-5 text-xs font-semibold text-[#B48CFF] tracking-wide">PICK A SENTENCE</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {PEOPLE_EXAMPLES.map((e, i) => (
+          <button key={e.sentence} onClick={() => setIndex(i)} className={`px-3 py-1.5 rounded-lg text-sm border ${i === index ? "bg-[#7C3AED] border-[#7C3AED] text-white" : "border-[#2A2140] text-[#9C93B3] hover:text-white"}`}>{e.sentence}</button>
+        ))}
+      </div>
+
+      <div className="mt-3 rounded-xl bg-[#0F0A1A] border border-[#2A2140] p-4">
+        <p className="text-sm text-[#C9BFE3]">Sentence: <span className="text-white">"{current.sentence}"</span></p>
+        <div className="mt-3 grid sm:grid-cols-3 gap-3 text-sm">
+          <div className="rounded-lg border border-[#F4B942]/40 p-3">
+            <p className="text-xs text-[#F4B942]">PREDICATE (property)</p>
+            <p className="mt-1 font-mono text-white">{current.predicate}</p>
+          </div>
+          <div className="rounded-lg border border-[#7C3AED]/40 p-3">
+            <p className="text-xs text-[#B48CFF]">SUBJECT (argument)</p>
+            <p className="mt-1 font-mono text-white">{current.subject}</p>
+          </div>
+          <div className="rounded-lg border border-[#4ADE80]/40 p-3">
+            <p className="text-xs text-[#4ADE80]">NOTATION</p>
+            <p className="mt-1 font-mono text-white">{current.formula}</p>
+          </div>
+        </div>
+        <p className="mt-3 text-sm text-[#9C93B3]">{current.note}</p>
+      </div>
+
+      <p className="mt-5 text-xs font-semibold text-[#B48CFF] tracking-wide">QUICK CHECK</p>
+      <div className="mt-2 space-y-4">
+        {questions.map((q) => {
+          const picked = quiz[q.id];
+          return (
+            <div key={q.id}>
+              <p className="text-sm text-white">{q.text}</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {q.options.map((o, i) => {
+                  const state = picked === undefined ? "" : i === q.answer ? "border-[#4ADE80] text-[#4ADE80]" : picked === i ? "border-[#F87171] text-[#F87171]" : "opacity-50";
+                  return (
+                    <button key={o} onClick={() => setQuiz({ ...quiz, [q.id]: i })} className={`px-3 py-1.5 rounded-lg border border-[#2A2140] text-sm font-mono text-[#C9BFE3] ${state}`}>{o}</button>
+                  );
+                })}
+              </div>
+              {picked !== undefined && <p className="mt-2 text-sm text-[#9C93B3]">{picked === q.answer ? "Correct. " : "Not quite. "}{q.why}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </Panel>
+  );
+}
+
 export default function PredicatesSection() {
   return (
     <div className="space-y-6">
@@ -324,6 +421,7 @@ export default function PredicatesSection() {
       <AnatomyOfPredicate />
       <ApplicationsOfPredicateLogic />
       <UniverseAndFunction />
+      <PeoplePredicates />
       <PropositionalFunctionIntro />
       <div>
         <p className="text-xs tracking-wide text-[#B48CFF] font-mono mb-2 mt-2">PREDICATES EXAMPLE</p>
